@@ -1,0 +1,72 @@
+/* Global styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f8ff; /* Soft blue background */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+h2 {
+  color: #2c3e50; /* Darker blue for text */
+}
+
+/* Container for the login form */
+.login-container {
+  background-color: #ffffff; /* White background */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  padding: 20px;
+  width: 300px;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input[type="email"],
+input[type="password"] {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #dfe6e9; /* Soft border color */
+  border-radius: 5px;
+  font-size: 14px;
+  width: 100%;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: #3498db; /* Blue border on focus */
+  outline: none;
+}
+
+button {
+  padding: 10px;
+  background-color: #3498db; /* Soft blue */
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #2980b9; /* Darker blue on hover */
+}
+
+p {
+  color: red;
+  font-size: 14px;
+}
+
+.success-message {
+  color: green;
+  font-size: 16px;
+}
+

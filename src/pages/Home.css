@@ -1,0 +1,118 @@
+/* General Layout */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  padding: 20px;
+}
+
+/* Heading */
+h1 {
+  text-align: center;
+  color: #333;
+  margin: 20px 0;
+}
+
+/* Product List */
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  justify-content: center;
+  margin-top: 20px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+/* Product Card Styling */
+.product-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  border: 2px solid #e0e0e0;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 360px; /* Kurangi tinggi minimum */
+}
+
+/* Hover effect */
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Image Styling */
+.product-image {
+  width: 100%; /* Sesuaikan lebar gambar dengan lebar kartu */
+  height: 200px; /* Pastikan tinggi gambar seragam */
+  border-radius: 5px;
+  object-fit: cover; /* Gambar akan memenuhi area tanpa distorsi */
+  margin: 0; /* Hilangkan margin agar pas dengan batas */
+}
+
+
+/* Product Title */
+.product-title {
+  font-size: 1.1rem; /* Kurangi ukuran font */
+  font-weight: bold;
+  color: #333;
+  margin: 10px 0 5px 0; /* Kurangi margin */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Product Price */
+.product-price {
+  font-size: 1rem; /* Kurangi ukuran font */
+  font-weight: bold;
+  color: #007bff;
+  margin: 5px 0; /* Kurangi margin */
+}
+
+/* Buttons */
+.product-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px; /* Kurangi margin */
+}
+
+.btn {
+  padding: 8px 12px; /* Kurangi padding tombol */
+  font-size: 0.9rem; /* Kurangi ukuran font tombol */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 48%;
+}
+
+.add-to-cart {
+  background-color: #28a745;
+  color: white;
+}
+
+.add-to-cart:hover {
+  background-color: #218838;
+}
+
+.details {
+  background-color: #007bff;
+  color: white;
+}
+
+.details:hover {
+  background-color: #0056b3;
+}

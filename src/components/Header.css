@@ -1,0 +1,39 @@
+/* Pastikan elemen nav mengambil posisi di bagian atas */
+nav {
+  position: fixed; /* Membuat header tetap di atas saat scroll */
+  top: 0; /* Tempelkan ke bagian atas */
+  left: 0;
+  width: 100%; /* Memastikan header menutupi seluruh lebar layar */
+  z-index: 50; /* Supaya di atas elemen lain */
+  background-color: #e5e7eb;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan untuk tampilan lebih menarik */
+}
+
+/* Styling untuk memastikan isi halaman tidak tertutup header */
+body {
+  margin: 0; /* Hilangkan margin bawaan browser */
+  padding-top: 64px; /* Sesuaikan dengan tinggi header */
+}
+
+/* Styling untuk link navigasi */
+.nav-link {
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.5rem 1rem; /* Tambahkan padding untuk memberikan ruang */
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #e5e7eb; /* Abu-abu lebih terang */
+}
+
+/* Styling untuk container */
+.container {
+  display: flex; /* Pastikan container menggunakan flexbox */
+  justify-content: space-between; /* Jarak antara kiri dan kanan */
+  align-items: center; /* Elemen sejajar secara vertikal */
+  margin: 0 auto;
+  max-width: 1200px; /* Membatasi lebar container */
+  padding: 0 16px; /* Tambahkan padding untuk ruang horizontal */
+}
