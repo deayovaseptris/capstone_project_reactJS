@@ -6,6 +6,7 @@
   background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-height: 700px;
 }
 
 .cart-container h1 {
@@ -36,7 +37,7 @@
 /* Gambar item */
 .cart-item-image {
   width: 80px;
-  height: 80px;
+  height: 100px;
   object-fit: cover;
   border-radius: 8px;
   margin-right: 15px;
@@ -80,10 +81,41 @@
   margin-top: 5px;
 }
 
+/* Tombol container */
+.cart-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  gap: 20px; /* Tambahkan gap untuk memberikan jarak yang konsisten */
+  margin-bottom: 20px; /* Tambahkan jarak di bawah tombol */
+}
+
+/* Tombol close */
+.btn.close {
+  flex: 1;
+  padding: 10px 15px;
+  background-color: red;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn.close:hover {
+  background-color: darkred;
+}
+
+.btn.close:active {
+  background-color: #a80000;
+}
+
 /* Tombol checkout */
 .btn.checkout {
-  display: block;
-  width: 100%;
+  flex: 1;
   padding: 10px 15px;
   background-color: #007bff;
   color: #fff;
@@ -92,7 +124,6 @@
   text-align: center;
   border: none;
   border-radius: 5px;
-  margin-top: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }

@@ -26,7 +26,7 @@ const Header = () => {
     <nav className="bg-blue-600 fixed top-0 left-0 w-full shadow-lg">
       <div className="container mx-auto p-4 flex justify-between items-center">
         {/* My E-Commerce di kiri */}
-        <h1 className="text-white text-2xl font-bold">My E-Commerce</h1>
+        <h1 className="text-white text-2xl font-bold">PayCart</h1>
 
         {/* Home, Cart, Login, Logout di kanan */}
         <div className="flex space-x-4 mx-auto">

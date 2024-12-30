@@ -3,13 +3,13 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "../redux/productSlice";
 import { addToCart } from "../redux/cartSlice";
-import { useNavigate } from "react-router-dom"; // Import useNavigate untuk navigasi
+import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import "./Home.css";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // Inisialisasi useNavigate
+  const navigate = useNavigate();
   const products = useSelector((state) => state.products);
 
   useEffect(() => {
@@ -18,11 +18,8 @@ const Home = () => {
     axios
       .get(apiUrl)
       .then((response) => {
-        const productsWithQuantity = response.data.map((product) => ({
-          ...product,
-          quantity: 20,
-        }));
-        dispatch(setProducts(productsWithQuantity)); // Simpan ke Redux Store
+        // Tidak perlu menambahkan quantity di sini
+        dispatch(setProducts(response.data)); // Simpan produk tanpa quantity
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -30,19 +27,19 @@ const Home = () => {
   }, [dispatch]);
 
   const handleAddToCart = (product) => {
-    const isLoggedIn = localStorage.getItem("userToken"); // Pastikan kunci ini sama
+    const isLoggedIn = localStorage.getItem("userToken");
     if (!isLoggedIn) {
       alert("Please login first!");
-      navigate("/login"); // Redirect ke halaman login
+      navigate("/login");
     } else {
-      dispatch(addToCart(product)); // Tambahkan produk ke cart
-      localStorage.setItem("cartItems", JSON.stringify(product));
+      // Menambahkan produk dengan quantity 1
+      dispatch(addToCart({ ...product, quantity: 1 }));
       alert(`${product.title} has been added to the cart!`);
     }
   };
 
   const handleViewDetails = (productId) => {
-    navigate(`/product/${productId}`); // Navigasi ke halaman detail produk
+    navigate(`/product/${productId}`);
   };
 
   return (
@@ -72,7 +69,7 @@ const Home = () => {
                   </button>
                   <button
                     className="btn details"
-                    onClick={() => handleViewDetails(product.id)} // Panggil fungsi untuk melihat detail produk
+                    onClick={() => handleViewDetails(product.id)}
                   >
                     Details
                   </button>

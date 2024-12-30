@@ -27,28 +27,28 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    // Mencari pengguna berdasarkan email dan password
+    // Find user by email and password
     const user = users.find(
       (user) => user.email === email && user.password === password
     );
 
     if (user) {
-      // Simpan token ke localStorage untuk menandai login
-      const userToken = `${user.id}-${new Date().getTime()}`; // Token sederhana
+      // Store token in localStorage to indicate login
+      const userToken = `${user.id}-${new Date().getTime()}`; // Simple token
       localStorage.setItem("userToken", userToken);
 
-      alert("Login berhasil!");
-      navigate("/"); // Redirect ke halaman home
+      alert("Login successful!");
+      navigate("/"); // Redirect to home page
     } else {
-      setError("Email atau Password salah");
+      setError("Invalid email or password");
     }
   };
 
   if (isLoggedIn) {
     return (
       <div>
-        <h2>Login berhasil!</h2>
-        <p>Selamat datang, {email}</p>
+        <h2>Login Successful!</h2>
+        <p>Welcome, {email}</p>
       </div>
     );
   }

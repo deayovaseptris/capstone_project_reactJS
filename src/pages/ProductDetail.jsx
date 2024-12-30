@@ -53,7 +53,7 @@ const ProductDetail = () => {
               alt={product.title}
               className="product-image"
             />
-            <p>{product.description}</p>
+            <p className="product-description">{product.description}</p>
             <p className="product-price">${product.price}</p>
             <div className="quantity-selector">
               <label htmlFor="quantity">Quantity:</label>

@@ -25,6 +25,12 @@
   margin: 20px 0;
 }
 
+.product-description {
+  font-size: 1em;
+  color: #333;
+  margin: 20px 0;
+}
+
 .quantity-selector {
   margin: 20px 0;
 }

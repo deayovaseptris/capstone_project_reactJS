@@ -1,65 +1,28 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-// import "./Cart.css";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  removeFromCart,
+  updateQuantity,
+  checkoutCart,
+} from "../redux/cartSlice";
+import { useNavigate } from "react-router-dom"; // Impor useNavigate
+import "./Cart.css";
 
 const Cart = () => {
-  const [cartItems, setCartItems] = useState([]);
-  const [message, setMessage] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate(); // Gunakan useNavigate
+  const cartItems = useSelector((state) => state.cart);
 
-  // Membaca data cart dari localStorage saat komponen dimuat
-  useEffect(() => {
-    const storedCartItems = [
-      JSON.parse(localStorage.getItem("cartItems") || "[]"),
-    ];
-    setCartItems(storedCartItems);
-
-    console.log(storedCartItems);
-  }, []);
-
-  // Handle perubahan kuantitas item dalam cart
-  const handleQuantityChange = (index, quantity) => {
-    const updatedCartItems = [...cartItems];
-    updatedCartItems[index].quantity = quantity;
-
-    if (quantity > updatedCartItems[index].stock) {
-      setMessage("Quantity exceeds available stock.");
-    } else {
-      setMessage("");
-    }
-
-    setCartItems(updatedCartItems);
-
-    // Simpan kembali cart yang sudah diperbarui ke localStorage
-    localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
+  const handleRemoveFromCart = (id) => {
+    dispatch(removeFromCart({ id }));
   };
 
-  // Handle proses checkout
+  const handleQuantityChange = (id, quantity) => {
+    dispatch(updateQuantity({ id, quantity }));
+  };
+
   const handleCheckout = () => {
-    const updatedItems = cartItems.map((item) => {
-      if (item.quantity <= item.stock) {
-        // Mengurangi stok lokal
-        const updatedStock = item.stock - item.quantity;
-
-        // Update stok di API
-        axios
-          .put(`${process.env.REACT_APP_API_BASE_URL}products/${item.id}`, {
-            stock: updatedStock,
-          })
-          .then(() => {
-            console.log(`Stock for ${item.title} updated to ${updatedStock}`);
-          })
-          .catch((error) => {
-            console.error("Error updating stock", error);
-          });
-
-        return { ...item, stock: updatedStock };
-      }
-      return item;
-    });
-
-    // Hapus cart dari localStorage setelah checkout
-    localStorage.removeItem("cartItems");
-    setCartItems([]);
+    dispatch(checkoutCart());
     alert("Checkout successful!");
   };
 
@@ -67,11 +30,11 @@ const Cart = () => {
     <div className="cart-container">
       <h1>Your Cart</h1>
       {cartItems.length === 0 ? (
-        <p>Anda belum memilih item</p>
+        <p>Your cart is empty.</p>
       ) : (
         <div>
           <ul className="cart-items-list">
-            {cartItems.map((item, index) => (
+            {cartItems.map((item) => (
               <li key={item.id} className="cart-item">
                 <img
                   src={item.image}
@@ -81,27 +44,32 @@ const Cart = () => {
                 <div className="cart-item-details">
                   <h3>{item.title}</h3>
                   <p>Price: ${item.price}</p>
-                  <p>Stock: {item.stock}</p>
+                  <p>Quantity: {item.quantity}</p>
                   <div className="quantity-controls">
                     <input
                       type="number"
                       value={item.quantity}
                       min="1"
-                      max={item.stock}
                       onChange={(e) =>
-                        handleQuantityChange(index, parseInt(e.target.value))
+                        handleQuantityChange(item.id, parseInt(e.target.value))
                       }
                     />
                   </div>
-                  {message && <p className="error-message">{message}</p>}
+                  <button onClick={() => handleRemoveFromCart(item.id)}>
+                    Remove
+                  </button>
                 </div>
               </li>
             ))}
           </ul>
-
-          <button className="btn checkout" onClick={handleCheckout}>
-            Checkout
-          </button>
+          <div className="cart-buttons">
+            <button className="btn checkout" onClick={handleCheckout}>
+              Checkout
+            </button>
+            <button className="btn close" onClick={() => navigate("/")}>
+              Close
+            </button>
+          </div>
         </div>
       )}
     </div>
